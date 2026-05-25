@@ -1,0 +1,17 @@
+<html>
+<head>
+    
+    <title>Monica Telugu song</title>
+</head>
+<body>
+
+    <h1>HTML5 Audio Player</h1>
+
+  <audio controls>
+       
+       <source src="C:\Users\soria\Downloads\songs\monica.mp3" type="audio/mpeg">
+        
+  </audio>
+
+</body>
+</html>
