@@ -1,0 +1,16 @@
+<header>
+    <h1>University Portal</h1>
+</header>
+<nav>
+    <a href="#">Home</a>
+    <a href="#">Courses</a>
+</nav>
+<section>
+    <article>
+        <h2>Web Technology</h2>
+        <p>HTML5 tutorial content.</p>
+    </article>
+</section>
+<footer>
+    Copyright 2026
+</footer>
