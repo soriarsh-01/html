@@ -1,5 +1,5 @@
 <header>
-<h1>Html5 audio example</h1>
+     <h1>Html5 audio example</h1>
 </header>
 
   <audio controls>
@@ -7,4 +7,6 @@
        <source src="C:\Users\soria\Downloads\songs\monica.mp3" type="audio/mpeg">
         
   </audio>
-
+<footer>
+Copyright 2026
+</footer>
