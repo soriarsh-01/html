@@ -1,0 +1,30 @@
+<table border="1">
+
+    <thead>
+        <tr>
+            <th>Employee</th>
+            <th>Salary</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr>
+            <td>Amit</td>
+            <td>25000</td>
+        </tr>
+
+        <tr>
+            <td>Neha</td>
+            <td>30000</td>
+        </tr>
+    </tbody>
+
+    <tfoot>
+        <tr>
+            <td colspan="2">Company Payroll Data</td>
+        </tr>
+    </tfoot>
+
+</table>
+
+ 
