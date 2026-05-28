@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+                <head>
+                                <title>Responsive Web Design</title>
+                                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                                <style>
+                                                body
+                                                { font-family: Arial;}
+                                                .container
+
+                                                {
+
+                                                                width: 100%;
+
+                                                                padding: 20px;
+                                                                background-color: lightblue;
+                                                }
+                                                img
+                                                {
+                                                                max-width: 100%;
+                                                                height: auto;
+                                                }
+
+                                </style>
+                </head>
+                <body>
+                                <div class="container">
+                                                <h1>Responsive Webpage</h1>
+                                                <p>This webpage automatically adjusts according to screen size.</p>
+                                                <img src="image.jpg" alt="Sample Image">
+                                </div>
+                </body>
+</html>
