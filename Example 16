@@ -1,0 +1,17 @@
+<ul>
+    <li>Programming Languages
+        <ul>
+            <li>Python</li>
+            <li>Java</li>
+            <li>C++</li>
+        </ul>
+    </li>
+
+    <li>Web Technologies
+        <ul>
+            <li>HTML5</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+        </ul>
+    </li>
+</ul>
