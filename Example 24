@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+                <head>
+                                <title>Local Storage Example</title>
+                </head>
+                <body>
+                                <script>
+                                                localStorage.setItem("username","student");
+                                                document.write( localStorage.getItem("username"));
+                                </script>
+                </body>
+</html>
