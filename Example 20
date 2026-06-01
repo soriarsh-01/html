@@ -7,7 +7,7 @@
                                 <h2>Student Registration Form</h2>
                                 <form>
                                                 <label>Student Name:</label><br>
-                                                <input type="text" placeholder="Enter Name" required><br><br>
+                                                <input type="text" placeholder="Enter Name" required><br><br> 
                                                 <label>Email:</label><br>
                                                 <input type="email" placeholder="Enter Email"><br><br>
                                                 <label>Password:</label><br>
