@@ -3,7 +3,7 @@
     <thead>
         <tr>
             <th>Employee</th>
-            <th>Salary</th>
+            <th>Salary</th> 
         </tr>
     </thead>
 
