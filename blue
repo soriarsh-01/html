@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Girlfriend Day, Lipsita</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Dancing+Script:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FBF5EF;
+    --blush:#F3DDD8;
+    --rose:#B94A5C;
+    --plum:#3E2B33;
+    --gold:#C6A567;
+    --sage:#8C9A72;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--plum);
+    font-family:'Cormorant Garamond', serif;
+    overflow-x:hidden;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+  }
+
+  /* ---------- ENVELOPE STAGE ---------- */
+  #envelope-stage{
+    position:fixed;
+    inset:0;
+    background:var(--blush);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    z-index:100;
+    transition:opacity 1s ease, visibility 1s ease;
+  }
+  #envelope-stage.hidden{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+  }
+  .envelope{
+    position:relative;
+    width:min(320px, 70vw);
+    height:min(210px, 46vw);
+    cursor:pointer;
+  }
+  .env-body{
+    position:absolute;
+    inset:0;
+    background:var(--cream);
+    border:1px solid var(--gold);
+    border-radius:4px;
+    box-shadow:0 20px 40px rgba(62,43,51,0.18);
+  }
+  .env-flap{
+    position:absolute;
+    top:0; left:0; right:0;
+    height:55%;
+    background:var(--rose);
+    clip-path:polygon(0 0, 100% 0, 50% 100%);
+    transform-origin:top;
+    transition:transform 1.1s cubic-bezier(.6,-0.2,.3,1.3);
+    z-index:3;
+  }
+  .envelope.open .env-flap{
+    transform:rotateX(180deg);
+  }
+  .seal{
+    position:absolute;
+    top:38%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:46px; height:46px;
+    background:var(--gold);
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Dancing Script', cursive;
+    color:var(--cream);
+    font-size:22px;
+    z-index:4;
+    box-shadow:0 4px 10px rgba(0,0,0,0.25);
+    transition:opacity .4s ease .2s, transform .4s ease .2s;
+  }
+  .envelope.open .seal{
+    opacity:0;
+    transform:translate(-50%,-50%) scale(0.4);
+  }
+  .env-hint{
+    position:absolute;
+    bottom:-40px;
+    left:0; right:0;
+    text-align:center;
+    color:var(--plum);
+    font-size:1rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    opacity:0.65;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:6vh 6vw;
+    position:relative;
+    background:
+      radial-gradient(ellipse at top left, rgba(201,166,107,0.15), transparent 55%),
+      radial-gradient(ellipse at bottom right, rgba(185,74,92,0.12), transparent 55%),
+      var(--cream);
+  }
+  .eyebrow{
+    letter-spacing:0.35em;
+    text-transform:uppercase;
+    font-size:0.75rem;
+    color:var(--sage);
+    margin-bottom:1.2rem;
+    opacity:0;
+    animation:fadeUp 1s ease forwards;
+    animation-delay:0.2s;
+  }
+  h1.name{
+    font-family:'Dancing Script', cursive;
+    font-weight:700;
+    font-size:clamp(3.2rem, 11vw, 7.5rem);
+    color:var(--rose);
+    margin:0 0 0.3rem 0;
+    line-height:1;
+    opacity:0;
+    animation:fadeUp 1s ease forwards;
+    animation-delay:0.4s;
+  }
+  .subtitle{
+    font-size:clamp(1.3rem, 3vw, 1.8rem);
+    font-style:italic;
+    color:var(--plum);
+    margin:0.4rem 0 2.2rem 0;
+    opacity:0;
+    animation:fadeUp 1s ease forwards;
+    animation-delay:0.65s;
+  }
+  .divider{
+    width:120px;
+    height:1px;
+    background:var(--gold);
+    margin:0 auto 2.2rem auto;
+    position:relative;
+    opacity:0;
+    animation:fadeUp 1s ease forwards;
+    animation-delay:0.85s;
+  }
+  .divider::before{
+    content:"❀";
+    position:absolute;
+    top:50%; left:50%;
+    transform:translate(-50%,-50%);
+    background:var(--cream);
+    padding:0 12px;
+    color:var(--sage);
+    font-size:1rem;
+  }
+  .message{
+    max-width:560px;
+    font-size:clamp(1.15rem, 2.4vw, 1.4rem);
+    line-height:1.75;
+    color:var(--plum);
+    opacity:0;
+    animation:fadeUp 1s ease forwards;
+    animation-delay:1.05s;
+  }
+  @keyframes fadeUp{
+    from{opacity:0; transform:translateY(18px);}
+    to{opacity:1; transform:translateY(0);}
+  }
+
+  .scroll-cue{
+    position:absolute;
+    bottom:6vh;
+    font-size:0.8rem;
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    color:var(--sage);
+    opacity:0;
+    animation:fadeUp 1s ease forwards, bob 2.4s ease-in-out infinite;
+    animation-delay:1.4s, 2.4s;
+  }
+  @keyframes bob{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(8px);}
+  }
+
+  /* ---------- REASONS SECTION ---------- */
+  .reasons{
+    padding:10vh 6vw;
+    display:grid;
+    gap:2.5rem;
+    max-width:900px;
+    margin:0 auto;
+    grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+  }
+  .reason-card{
+    padding:2.2rem 1.8rem;
+    border:1px solid rgba(198,165,103,0.4);
+    border-radius:2px;
+    background:var(--blush);
+    position:relative;
+  }
+  .reason-num{
+    font-family:'Dancing Script', cursive;
+    font-size:2.2rem;
+    color:var(--rose);
+    display:block;
+    margin-bottom:0.6rem;
+  }
+  .reason-card p{
+    font-size:1.15rem;
+    line-height:1.6;
+    margin:0;
+  }
+
+  /* ---------- CLOSING ---------- */
+  .closing{
+    text-align:center;
+    padding:12vh 6vw 14vh 6vw;
+    background:var(--plum);
+    color:var(--cream);
+  }
+  .closing .signoff{
+    font-family:'Dancing Script', cursive;
+    font-size:clamp(2.4rem, 6vw, 3.6rem);
+    color:var(--gold);
+    margin-bottom:0.5rem;
+  }
+  .closing p{
+    font-size:1.2rem;
+    opacity:0.85;
+    max-width:480px;
+    margin:0 auto;
+  }
+  .footer-note{
+    margin-top:3rem;
+    font-size:0.75rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    opacity:0.5;
+  }
+</style>
+</head>
+<body>
+
+<div id="envelope-stage">
+  <div class="envelope" id="envelope">
+    <div class="env-body"></div>
+    <div class="env-flap"></div>
+    <div class="seal">L</div>
+    <div class="env-hint">tap to open</div>
+  </div>
+</div>
+
+<section class="hero">
+  <span class="eyebrow">A little note for</span>
+  <h1 class="name">Lipsita</h1>
+  <p class="subtitle">Happy Girlfriend Day</p>
+  <div class="divider"></div>
+  <p class="message">
+    Today's just an excuse to say out loud what I already know every day —
+    being with you makes ordinary moments feel like the best part of my life.
+    Here's to you, Lipsita, and to us.
+  </p>
+  <div class="scroll-cue">scroll down ↓</div>
+</section>
+
+<section class="reasons">
+  <div class="reason-card">
+    <span class="reason-num">01</span>
+    <p>The way you laugh at your own jokes before you even finish telling them.</p>
+  </div>
+  <div class="reason-card">
+    <span class="reason-num">02</span>
+    <p>How you make even a boring Tuesday feel like something worth looking forward to.</p>
+  </div>
+  <div class="reason-card">
+    <span class="reason-num">03</span>
+    <p>You listen — really listen — and somehow that's the rarest, kindest thing.</p>
+  </div>
+  <div class="reason-card">
+    <span class="reason-num">04</span>
+    <p>Every plan feels better the moment I know you're going to be there too.</p>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="signoff">Happy Girlfriend Day, Lipsita</div>
+  <p>Thank you for being exactly who you are. I'm lucky to love you.</p>
+  <div class="footer-note">made with love</div>
+</section>
+
+<script>
+  const envelope = document.getElementById('envelope');
+  const stage = document.getElementById('envelope-stage');
+  envelope.addEventListener('click', () => {
+    envelope.classList.add('open');
+    setTimeout(() => stage.classList.add('hidden'), 900);
+  });
+</script>
+
+</body>
+</html>
