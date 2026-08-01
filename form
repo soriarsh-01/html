@@ -1,0 +1,20 @@
+<form action="/submit" method="POST">
+  <label for="name">Name</label>
+  <input type="text" id="name" name="name" placeholder="Your name" required>
+
+  <input type="email" name="email">
+  <input type="password" name="pw">
+  <input type="checkbox" name="agree" checked>
+  <input type="radio" name="choice" value="a">
+  <input type="range" min="0" max="100">
+  <input type="date">
+  <input type="file">
+
+  <textarea rows="4" cols="30"></textarea>
+
+  <select name="options">
+    <option value="1">Option 1</option>
+  </select>
+
+  <button type="submit">Send</button>
+</form>
