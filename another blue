@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Girlfriend's Day</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Marcellus&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --plum: #2b1023;
+    --plum-deep: #1a0916;
+    --rose: #e8a798;
+    --rose-soft: #f2c9bd;
+    --sage: #8ba07c;
+    --gold: #c9a86a;
+    --cream: #f6ecdf;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background: var(--plum-deep);
+    color: var(--cream);
+    font-family: 'Outfit', sans-serif;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* ambient texture */
+  body::before{
+    content:'';
+    position: fixed;
+    inset:0;
+    background:
+      radial-gradient(ellipse 60% 40% at 20% 10%, rgba(232,167,152,0.10), transparent 60%),
+      radial-gradient(ellipse 50% 50% at 85% 80%, rgba(139,160,124,0.08), transparent 60%);
+    pointer-events:none;
+    z-index:0;
+  }
+
+  .eyebrow{
+    font-family:'Outfit', sans-serif;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    font-size: 0.68rem;
+    color: var(--rose-soft);
+    opacity:0.85;
+  }
+
+  h1, h2, .display{
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    min-height: 100vh;
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding: 6rem 1.5rem 4rem;
+    position:relative;
+    z-index:1;
+  }
+
+  .hero .date{
+    font-family:'Marcellus', serif;
+    font-size: 0.85rem;
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    color: var(--gold);
+    margin-bottom: 1.4rem;
+  }
+
+  .hero h1{
+    font-size: clamp(3rem, 10vw, 6.5rem);
+    line-height: 1.02;
+    font-style: italic;
+    background: linear-gradient(180deg, var(--cream) 20%, var(--rose-soft) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .hero .sub{
+    margin-top: 1.6rem;
+    max-width: 32rem;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: rgba(246,236,223,0.78);
+    font-weight: 300;
+  }
+
+  .hero .scroll-cue{
+    margin-top: 3.5rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--rose-soft);
+    opacity: 0.6;
+    animation: bob 2.4s ease-in-out infinite;
+  }
+
+  @keyframes bob{
+    0%,100%{ transform: translateY(0); opacity:0.6; }
+    50%{ transform: translateY(8px); opacity:1; }
+  }
+
+  /* soft floating petals */
+  .petal{
+    position:absolute;
+    border-radius: 50% 0 50% 50%;
+    background: var(--rose);
+    opacity: 0.35;
+    filter: blur(0.3px);
+    animation: drift linear infinite;
+    z-index:0;
+  }
+  @keyframes drift{
+    0%{ transform: translateY(-10vh) rotate(0deg); opacity:0; }
+    10%{ opacity:0.4; }
+    90%{ opacity:0.3; }
+    100%{ transform: translateY(110vh) rotate(280deg); opacity:0; }
+  }
+
+  /* ---------- GALLERY (scattered polaroids) ---------- */
+  .gallery-section{
+    position:relative;
+    z-index:1;
+    padding: 5rem 1.5rem 7rem;
+  }
+
+  .section-head{
+    text-align:center;
+    margin-bottom: 3.5rem;
+  }
+  .section-head h2{
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    font-style: italic;
+    margin-top: 0.6rem;
+  }
+
+  .polaroid-field{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content:center;
+    gap: 2.4rem 1.8rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .polaroid{
+    background: var(--cream);
+    padding: 0.9rem 0.9rem 2.6rem;
+    width: 210px;
+    box-shadow: 0 18px 34px rgba(0,0,0,0.45);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    cursor: default;
+  }
+  .polaroid:nth-child(1){ transform: rotate(-6deg); }
+  .polaroid:nth-child(2){ transform: rotate(4deg); margin-top: 2.2rem; }
+  .polaroid:nth-child(3){ transform: rotate(-3deg); margin-top: -1rem; }
+  .polaroid:nth-child(4){ transform: rotate(7deg); }
+  .polaroid:nth-child(5){ transform: rotate(-8deg); margin-top: 1.4rem; }
+
+  .polaroid:hover{
+    transform: rotate(0deg) scale(1.06) translateY(-6px);
+    box-shadow: 0 26px 50px rgba(0,0,0,0.55);
+    z-index: 5;
+  }
+
+  .polaroid .frame{
+    width: 100%;
+    aspect-ratio: 3/4;
+    overflow: hidden;
+    background: #000;
+  }
+  .polaroid .frame img{
+    width:100%; height:100%; object-fit: cover;
+    filter: saturate(0.92) contrast(1.02);
+  }
+  .polaroid .cap{
+    font-family:'Cormorant Garamond', serif;
+    font-style: italic;
+    color: #3a2430;
+    text-align:center;
+    font-size: 0.95rem;
+    margin-top: 0.7rem;
+    letter-spacing: 0.02em;
+  }
+
+  /* ---------- QUOTES ---------- */
+  .quotes-section{
+    position:relative;
+    z-index:1;
+    padding: 4rem 1.5rem 7rem;
+    background: linear-gradient(180deg, transparent, rgba(0,0,0,0.18) 15%, rgba(0,0,0,0.18) 85%, transparent);
+  }
+
+  .quote-deck{
+    max-width: 640px;
+    margin: 0 auto;
+    text-align:center;
+  }
+
+  .quote-card{
+    display:none;
+    animation: fadeUp 0.6s ease;
+  }
+  .quote-card.active{ display:block; }
+
+  @keyframes fadeUp{
+    from{ opacity:0; transform: translateY(14px); }
+    to{ opacity:1; transform: translateY(0); }
+  }
+
+  .quote-card .mark{
+    font-family:'Cormorant Garamond', serif;
+    font-size: 3.5rem;
+    color: var(--gold);
+    line-height:1;
+    opacity:0.7;
+  }
+
+  .quote-card p{
+    font-family:'Cormorant Garamond', serif;
+    font-size: clamp(1.4rem, 3.4vw, 2rem);
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--cream);
+    margin: 0.4rem 0 1.2rem;
+  }
+
+  .quote-card .sign{
+    font-size: 0.7rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--sage);
+  }
+
+  .quote-nav{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap: 1.6rem;
+    margin-top: 2.8rem;
+  }
+
+  .quote-nav button{
+    background: transparent;
+    border: 1px solid rgba(246,236,223,0.35);
+    color: var(--cream);
+    width: 42px; height:42px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    cursor:pointer;
+    transition: all 0.25s ease;
+  }
+  .quote-nav button:hover{
+    background: var(--rose);
+    border-color: var(--rose);
+    color: var(--plum-deep);
+  }
+
+  .quote-dots{
+    display:flex; gap: 0.5rem;
+  }
+  .quote-dots span{
+    width: 6px; height:6px; border-radius:50%;
+    background: rgba(246,236,223,0.3);
+    transition: all 0.3s ease;
+  }
+  .quote-dots span.active{
+    background: var(--rose);
+    width: 18px; border-radius: 4px;
+  }
+
+  /* ---------- MUSIC PLAYER ---------- */
+  .player{
+    position: fixed;
+    bottom: 1.4rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 50;
+    display:flex;
+    align-items:center;
+    gap: 0.9rem;
+    background: rgba(26,9,22,0.82);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(232,167,152,0.25);
+    padding: 0.6rem 1.1rem 0.6rem 0.6rem;
+    border-radius: 999px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  }
+
+  .player button{
+    width: 40px; height:40px;
+    border-radius: 50%;
+    border:none;
+    background: var(--rose);
+    color: var(--plum-deep);
+    font-size: 1rem;
+    cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+    transition: transform 0.2s ease;
+  }
+  .player button:hover{ transform: scale(1.08); }
+
+  .player .label{
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--cream);
+    opacity:0.8;
+    white-space: nowrap;
+  }
+
+  .bars{
+    display:flex;
+    align-items:flex-end;
+    gap: 3px;
+    height: 16px;
+  }
+  .bars span{
+    width: 3px;
+    background: var(--sage);
+    border-radius: 2px;
+    animation: eq 1s ease-in-out infinite;
+    opacity: 0.5;
+  }
+  .bars span:nth-child(1){ animation-delay: 0s; height: 40%; }
+  .bars span:nth-child(2){ animation-delay: 0.15s; height: 90%; }
+  .bars span:nth-child(3){ animation-delay: 0.3s; height: 60%; }
+  .bars span:nth-child(4){ animation-delay: 0.45s; height: 100%; }
+  .bars.paused span{ animation-play-state: paused; opacity:0.25; }
+
+  @keyframes eq{
+    0%,100%{ transform: scaleY(0.4); }
+    50%{ transform: scaleY(1); }
+  }
+
+  /* ---------- CLOSING ---------- */
+  .closing{
+    position:relative;
+    z-index:1;
+    min-height: 70vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding: 4rem 1.5rem 8rem;
+  }
+
+  .closing h2{
+    font-size: clamp(2.4rem, 7vw, 4rem);
+    font-style: italic;
+  }
+
+  .closing .heart{
+    margin-top: 1.6rem;
+    font-size: 1.6rem;
+    color: var(--rose);
+  }
+
+  .closing .note{
+    margin-top: 1rem;
+    max-width: 30rem;
+    color: rgba(246,236,223,0.7);
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  footer{
+    text-align:center;
+    padding: 2rem 1rem 6rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(246,236,223,0.35);
+    position:relative; z-index:1;
+  }
+
+  @media (max-width: 480px){
+    .polaroid{ width: 42vw; padding: 0.6rem 0.6rem 1.8rem; }
+    .polaroid .cap{ font-size: 0.8rem; }
+    .player{ gap: 0.6rem; padding: 0.5rem 0.9rem 0.5rem 0.5rem; }
+    .player .label{ display:none; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .petal, .scroll-cue, .bars span{ animation: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<div id="petals"></div>
+
+<section class="hero">
+  <div class="date">August 1st</div>
+  <h1>Happy<br>Girlfriend's&nbsp;Day</h1>
+  <p class="sub">A whole day, just to say it out loud — every ordinary moment with you has been anything but ordinary.</p>
+  <div class="scroll-cue">scroll down ↓</div>
+</section>
+
+<section class="gallery-section">
+  <div class="section-head">
+    <div class="eyebrow">A Few Favorites</div>
+    <h2>Moments I Keep Coming Back To</h2>
+  </div>
+  <div class="polaroid-field">
+    <div class="polaroid">
+      <div class="frame"><img src="1000036449.jpg" alt="candid portrait"></div>
+      <div class="cap">that smile, mid-laugh</div>
+    </div>
+    <div class="polaroid">
+      <div class="frame"><img src="1000036384.jpg" alt="portrait in red"></div>
+      <div class="cap">effortlessly you</div>
+    </div>
+    <div class="polaroid">
+      <div class="frame"><img src="1000036312.jpg" alt="eyes close up"></div>
+      <div class="cap">these eyes, always</div>
+    </div>
+    <div class="polaroid">
+      <div class="frame"><img src="1000036591.jpg" alt="portrait in green saree"></div>
+      <div class="cap">grace, unforced</div>
+    </div>
+    <div class="polaroid">
+      <div class="frame"><img src="1000036361.jpg" alt="portrait wrapped in shawl"></div>
+      <div class="cap">soft, quiet moments</div>
+    </div>
+  </div>
+</section>
+
+<section class="quotes-section">
+  <div class="section-head">
+    <div class="eyebrow">Best Wishes</div>
+    <h2>For You, Today</h2>
+  </div>
+
+  <div class="quote-deck">
+    <div class="quote-card active">
+      <div class="mark">“</div>
+      <p>Happy Girlfriend's Day to the person who turned my ordinary days into ones worth remembering.</p>
+      <div class="sign">— for you</div>
+    </div>
+    <div class="quote-card">
+      <div class="mark">“</div>
+      <p>You are the calm in my noise and the reason my favorite plans always start with "let's."</p>
+      <div class="sign">— for you</div>
+    </div>
+    <div class="quote-card">
+      <div class="mark">“</div>
+      <p>Every love language sounds better when it's spoken by you. Today, all of them are for you.</p>
+      <div class="sign">— for you</div>
+    </div>
+    <div class="quote-card">
+      <div class="mark">“</div>
+      <p>Some people search a lifetime for what I get to call mine. Happy Girlfriend's Day, my favorite person.</p>
+      <div class="sign">— for you</div>
+    </div>
+    <div class="quote-card">
+      <div class="mark">“</div>
+      <p>Not just today, but every day — thank you for choosing us, over and over again.</p>
+      <div class="sign">— for you</div>
+    </div>
+  </div>
+
+  <div class="quote-nav">
+    <button id="prevQuote" aria-label="previous wish">‹</button>
+    <div class="quote-dots" id="quoteDots"></div>
+    <button id="nextQuote" aria-label="next wish">›</button>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="eyebrow">Always</div>
+  <h2>Here's to us</h2>
+  <div class="heart">♡</div>
+  <p class="note">Happy Girlfriend's Day. Here's to the version of us that gets better with every year — thank you for being exactly who you are.</p>
+</section>
+
+<footer>made with a little love, for a lot of one person</footer>
+
+<div class="player">
+  <button id="playBtn" aria-label="play music">▶</button>
+  <div class="bars paused" id="bars">
+    <span></span><span></span><span></span><span></span>
+  </div>
+  <div class="label">soft ambience</div>
+</div>
+
+<script>
+  // floating petals
+  const petalField = document.getElementById('petals');
+  const petalCount = window.innerWidth < 600 ? 8 : 14;
+  for(let i=0;i<petalCount;i++){
+    const p = document.createElement('div');
+    p.className = 'petal';
+    const size = 6 + Math.random()*10;
+    p.style.width = size+'px';
+    p.style.height = size+'px';
+    p.style.left = Math.random()*100+'vw';
+    p.style.top = '-5vh';
+    p.style.animationDuration = (14 + Math.random()*12)+'s';
+    p.style.animationDelay = (Math.random()*14)+'s';
+    petalField.appendChild(p);
+  }
+
+  // quote deck
+  const cards = document.querySelectorAll('.quote-card');
+  const dotsWrap = document.getElementById('quoteDots');
+  let current = 0;
+  cards.forEach((_, i) => {
+    const d = document.createElement('span');
+    if(i===0) d.classList.add('active');
+    d.addEventListener('click', () => showQuote(i));
+    dotsWrap.appendChild(d);
+  });
+  const dots = dotsWrap.querySelectorAll('span');
+
+  function showQuote(i){
+    cards[current].classList.remove('active');
+    dots[current].classList.remove('active');
+    current = (i + cards.length) % cards.length;
+    cards[current].classList.add('active');
+    dots[current].classList.add('active');
+  }
+
+  document.getElementById('prevQuote').addEventListener('click', () => showQuote(current-1));
+  document.getElementById('nextQuote').addEventListener('click', () => showQuote(current+1));
+
+  let autoAdvance = setInterval(() => showQuote(current+1), 6000);
+  dotsWrap.addEventListener('click', () => { clearInterval(autoAdvance); });
+  document.getElementById('prevQuote').addEventListener('click', () => clearInterval(autoAdvance));
+  document.getElementById('nextQuote').addEventListener('click', () => clearInterval(autoAdvance));
+
+  // gentle original ambient music, synthesized in-browser (no external audio file needed)
+  let audioCtx, masterGain, playing = false, padNodes = [], noteTimer;
+  const playBtn = document.getElementById('playBtn');
+  const bars = document.getElementById('bars');
+
+  function startAmbience(){
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    masterGain = audioCtx.createGain();
+    masterGain.gain.value = 0;
+    masterGain.connect(audioCtx.destination);
+    masterGain.gain.linearRampToValueAtTime(0.06, audioCtx.currentTime + 2);
+
+    // soft pad chord
+    const chord = [220.00, 261.63, 329.63, 392.00]; // Am-ish warm chord
+    chord.forEach((freq, idx) => {
+      const osc = audioCtx.createOscillator();
+      osc.type = 'sine';
+      osc.frequency.value = freq;
+      const g = audioCtx.createGain();
+      g.gain.value = 0.5 / chord.length;
+      const lfo = audioCtx.createOscillator();
+      lfo.frequency.value = 0.08 + idx*0.01;
+      const lfoGain = audioCtx.createGain();
+      lfoGain.gain.value = 0.15 / chord.length;
+      lfo.connect(lfoGain);
+      lfoGain.connect(g.gain);
+      lfo.start();
+      osc.connect(g);
+      g.connect(masterGain);
+      osc.start();
+      padNodes.push(osc, lfo, g, lfoGain);
+    });
+
+    // occasional soft plucked note
+    const scale = [523.25, 587.33, 659.25, 783.99, 880.00];
+    function pluck(){
+      const freq = scale[Math.floor(Math.random()*scale.length)];
+      const osc = audioCtx.createOscillator();
+      osc.type = 'triangle';
+      osc.frequency.value = freq;
+      const g = audioCtx.createGain();
+      g.gain.value = 0;
+      osc.connect(g);
+      g.connect(masterGain);
+      osc.start();
+      const t = audioCtx.currentTime;
+      g.gain.linearRampToValueAtTime(0.18, t + 0.05);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + 2.2);
+      osc.stop(t + 2.3);
+      noteTimer = setTimeout(pluck, 2800 + Math.random()*3200);
+    }
+    pluck();
+  }
+
+  function stopAmbience(){
+    if(masterGain){
+      masterGain.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 1);
+      setTimeout(() => { audioCtx && audioCtx.close(); }, 1100);
+    }
+    clearTimeout(noteTimer);
+    padNodes = [];
+  }
+
+  playBtn.addEventListener('click', () => {
+    if(!playing){
+      startAmbience();
+      playing = true;
+      playBtn.textContent = '❚❚';
+      bars.classList.remove('paused');
+    } else {
+      stopAmbience();
+      playing = false;
+      playBtn.textContent = '▶';
+      bars.classList.add('paused');
+    }
+  });
+</script>
+
+</body>
+</html>
